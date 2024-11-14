@@ -3,6 +3,20 @@ allprojects {
         google()
         mavenCentral()
     }
+    subprojects {
+        afterEvaluate { project ->
+            project.android {
+                if (project.name != 'veriff_flutter') {
+                    compileSdkVersion 35
+                    // buildToolsVersion "35.0.0"
+                }
+                if (project.name == 'rive_common') {
+                    ndkVersion = '25.1.8937393'
+                    println("NDK version set for project 'rive'")
+                }
+            }
+        }
+    }
 }
 
 rootProject.buildDir = "../build"
